@@ -1,0 +1,48 @@
+# PulseTrack — Default Configuration
+# Override any of these in config/local.yaml
+
+pulsetrack:
+  version: "2.4"
+  log_level: "INFO"
+  log_format: "json"
+  scan_interval: 3600
+  heartbeat_interval: 60
+  max_workers: 50
+  audit_trail: true
+
+targets: []
+
+reporting:
+  format: "pdf"
+  output_dir: "./reports"
+  template: "default"
+  embed_metadata: true
+  author: "PulseTrack Automated Scanner"
+  organization: "NovaTech Solutions"
+  classification: "INTERNAL"
+
+alerting:
+  enabled: true
+  cooldown_minutes: 30
+  backends:
+    slack:
+      enabled: false
+      webhook_url: "${SLACK_WEBHOOK_URL}"
+      channel: "#security-alerts"
+    email:
+      enabled: false
+      smtp_host: "smtp.novatech.internal"
+      smtp_port: 587
+      from: "pulsetrack@novatech.com"
+      to: ["soc@novatech.com"]
+    webhook:
+      enabled: false
+      url: "${ALERT_WEBHOOK_URL}"
+      method: "POST"
+      headers:
+        Content-Type: "application/json"
+
+storage:
+  backend: "local"
+  path: "./data"
+  retention_days: 90

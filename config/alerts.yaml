@@ -1,0 +1,40 @@
+# PulseTrack — Alert Rules
+# Evaluated after each scan cycle.
+
+rules:
+
+  - name: "new_open_port"
+    description: "Alert when a port not seen in the previous scan appears open"
+    severity: "medium"
+    condition:
+      type: "diff"
+      field: "port"
+      status: "open"
+      baseline: "last_scan"
+    backends: ["slack", "email"]
+
+  - name: "critical_service_exposed"
+    description: "Alert immediately if RDP, Telnet or VNC is found open externally"
+    severity: "critical"
+    condition:
+      type: "match"
+      field: "port"
+      values: [23, 3389, 5900, 5901]
+      status: "open"
+    backends: ["slack", "email", "webhook"]
+
+  - name: "high_cvss_cve"
+    description: "Alert on CVEs with CVSS >= 9.0 matching any discovered service"
+    severity: "high"
+    condition:
+      type: "cve_match"
+      min_cvss: 9.0
+    backends: ["slack", "email"]
+
+  - name: "scan_failure"
+    description: "Alert if a scan cycle fails to complete within 2x the expected duration"
+    severity: "low"
+    condition:
+      type: "timeout"
+      factor: 2.0
+    backends: ["slack"]
