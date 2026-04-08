@@ -16,3 +16,4 @@ build/
 *.egg-info/
 .pytest_cache/
 .mypy_cache/
+##CIS{Q29tbyBtb2xhIHJvdGFyIHBhbGFyYXMgZW4gaHR0cHM6Ly93d3cuZGNvZGUuZnIvcm90LWNpcGhlci4gRGUgZXN0YSBtYW5lcmEgcHVlZGUgaGFjZXIgcXVlIHR1IGNvbnRyYXNlw7FhIHNlYSBST0JVU1RBLi4uLiBvIG5vLi4uOyk=}
