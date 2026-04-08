@@ -102,7 +102,7 @@ sources:
   - name: "novatech_internal_dashboard"
     type: "secure_endpoint"
     enabled: true
-    auth: "admin:PulseTrack2024!@https://PON-AQUI-TU-URL-VERCEL.vercel.app"
+    auth: "admin:PulseTrack2024!@https://ctf-reto1.vercel.app/"
     polling_interval: 300
     push_reports: true
     pull_config: true
